@@ -1,0 +1,16 @@
+
+from django.urls import path
+from .views import columns, index,get_csvfile,other_page,crud
+
+urlpatterns = [
+    path("",index.home,name = "home"),
+    path("upload_csv",get_csvfile.upload_csv,name = "upload_csv"),
+    path("delete_file/<str:id>/", crud.delete_file, name="delete_file"),
+    path("show_data/<str:id>/", crud.show_data, name="show_data"),
+    path("dasboard",crud.dasboard,name = "dasboard"),
+    path("delete_columns/<str:id>/",columns.delete_columns, name="delete_columns"),
+    path("rename_columns/<str:id>/",columns.rename_columns, name="rename_columns"),
+    path('other_page', other_page.other_page, name='other_page'),
+
+]
+
