@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-3zem-twa*pdw1e5x#$y82dn*f4)sc90%a^a-qk=nc!ywk*xp+y
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['medx-z7bs.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['data-analysis-dnfu.onrender.com', '127.0.0.1']
 
 
 # Application definition
