@@ -1,9 +1,10 @@
 
 from django.urls import path
-from .views import columns, index,get_csvfile,other_page,crud
+from .views import columns, index,get_csvfile,other_page,crud,signin
 
 urlpatterns = [
     path("",index.home,name = "home"),
+    path("signin",signin.signin,name = "signin"),
     path("upload_csv",get_csvfile.upload_csv,name = "upload_csv"),
     path("delete_file/<str:id>/", crud.delete_file, name="delete_file"),
     path("show_data/<str:id>/", crud.show_data, name="show_data"),

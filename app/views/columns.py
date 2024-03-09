@@ -4,7 +4,10 @@ import tempfile
 from app.models import Csv
 import os
 from django.core.files.storage import default_storage
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='signin')
 def delete_columns(request, id):
     if request.method == 'POST':
         # Get list of columns to delete from user input
@@ -55,7 +58,7 @@ def delete_columns(request, id):
         except Exception as e:
             return render(request, "error.html", {'error_message': str(e)})
 
-
+@login_required(login_url='signin')
 def rename_columns(request,id):
     
     if request.method == 'POST':
