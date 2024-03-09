@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from app.models import User,Csv
 import random
+from django.contrib.auth.decorators import login_required
 
 def unique_number(name):
     name=name
@@ -15,6 +16,7 @@ def unique_number(name):
         except:
             return uq
 
+@login_required(login_url='signin')
 def upload_csv(request):
     try:
         csv_file = request.FILES['csv_file']

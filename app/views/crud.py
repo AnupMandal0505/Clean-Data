@@ -3,7 +3,11 @@ import os
 from django.shortcuts import render,redirect
 import pandas as pd
 from app.models import User,Csv  # Import your model if you're fetching data from a database
+from django.contrib.auth.decorators import login_required
 
+
+
+@login_required(login_url='signin')
 def dasboard(request):
     user=request.user
     data=Csv.objects.filter(user=user)
@@ -11,7 +15,7 @@ def dasboard(request):
     return render(request, 'history.html', {'data': data})  # Pass the data to the template
 
 
-
+@login_required(login_url='signin')
 def show_data(request,id):
     try:
         # Read CSV file using pandas
@@ -35,6 +39,8 @@ def show_data(request,id):
 
 from django.http import Http404
 
+
+@login_required(login_url='signin')
 def delete_file(request, id):
     try:
         obj = Csv.objects.get(id=id)
