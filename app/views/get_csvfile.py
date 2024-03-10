@@ -30,7 +30,7 @@ def upload_csv(request):
          # Save file to the user's model instance
         CsvSave=Csv.objects.create(user=user,File_description=csv_file.name,id=csv_file.name)
         CsvSave.old_csv.save(csv_file.name, csv_file)
-        return redirect('upload_csv')
+        return redirect('dasboard')
 
         # try:
         #     # print(45)
