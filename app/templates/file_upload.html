@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upload CSV File</title>
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
 
 .container {
     max-width: 600px;
@@ -89,8 +81,10 @@ h2 {
     background-color: #0056b3;
 } {% endcomment %}
 </style>
-</head>
-<body>
+{% endblock style %}
+
+
+{% block body %}
 
 <div class="container">
     <h2>Upload a CSV File</h2>
@@ -108,12 +102,10 @@ h2 {
             <button type="submit" id="submitButton" disabled>Submit</button>
         </div>
     </form>
+</div>
+    {% endblock body %}
 
-    <!-- Dashboard button -->
-    {% comment %} <div class="dashboard-btn">
-        <a href="dasboard">Go to Dashboard</a>
-    </div> {% endcomment %}
-
+    {% block script %}
     <script>
     document.getElementById('csvFileInput').addEventListener('change', function() {
         const file = this.files[0];
@@ -130,7 +122,5 @@ h2 {
         }
     });
     </script>
-</div>
+    {% endblock script %}
 
-</body>
-</html>
