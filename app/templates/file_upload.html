@@ -69,7 +69,7 @@ h2 {
     cursor: not-allowed;
 }
 
-.dashboard-btn {
+{% comment %} .dashboard-btn {
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -87,7 +87,7 @@ h2 {
 
 .dashboard-btn a:hover {
     background-color: #0056b3;
-}
+} {% endcomment %}
 </style>
 </head>
 <body>
@@ -110,9 +110,9 @@ h2 {
     </form>
 
     <!-- Dashboard button -->
-    <div class="dashboard-btn">
+    {% comment %} <div class="dashboard-btn">
         <a href="dasboard">Go to Dashboard</a>
-    </div>
+    </div> {% endcomment %}
 
     <script>
     document.getElementById('csvFileInput').addEventListener('change', function() {

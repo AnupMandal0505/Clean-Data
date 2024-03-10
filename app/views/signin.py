@@ -19,7 +19,7 @@ def signin(request):
                 if user is not None:
                     login(request, user)
                     print(545)
-                    return redirect('upload_csv')
+                    return redirect('dasboard')
                 else:
                     messages.info(request, 'Check Password !')
                     return redirect('signin')
