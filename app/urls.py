@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import columns, index,get_csvfile,other_page,crud,signin,signup
+from .views import columns, index,get_csvfile,other_page,crud,signin,signup,na_value
 
 urlpatterns = [
     path("",index.home,name = "home"),
@@ -14,6 +14,8 @@ urlpatterns = [
     path("delete_columns/<str:id>/",columns.delete_columns, name="delete_columns"),
     path("rename_columns/<str:id>/",columns.rename_columns, name="rename_columns"),
     path('other_page', other_page.other_page, name='other_page'),
+    path("dropna/<str:id>/",na_value.dropna,name = "dropna"),
+    path("fillna/<str:id>/",na_value.fillna,name = "fillna"),
 
 ]
 
