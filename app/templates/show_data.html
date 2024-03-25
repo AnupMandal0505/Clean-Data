@@ -48,6 +48,8 @@
         <div class="dropdown-menu bg-transparent border-0">
             <a href="/delete_columns/{{id}}" class="dropdown-item">Delete</a>
             <a href="/rename_columns/{{id}}" class="dropdown-item">Rename</a>
+            <a href="{% url 'columns_lower_upper_case' id %}?case=lower" class="dropdown-item">Lowercase</a>
+            <a href="{% url 'columns_lower_upper_case' id %}?case=upper" class="dropdown-item">Uppercase</a>            {% comment %} <a href="/uppercase" class="dropdown-item">Uppercase</a> {% endcomment %}
         </div>
     </div>
 
@@ -58,6 +60,22 @@
             <a href="/dropna/{{id}}" class="dropdown-item">Drop NA</a>
         </div>
     </div>
+
+    <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Merge Data</a>
+
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Loc/Iloc</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/loc/{{id}}" class="dropdown-item">loc</a>
+            <a href="/loc/{{id}}" class="dropdown-item">iloc</a>
+        </div>
+    </div>
+    <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Replace</a>
+
+    <a href="/plot/{{id}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>PLOT</a>
+
+    
+
 {% endblock sidebar %}
 
 {% block body %}

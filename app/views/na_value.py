@@ -70,7 +70,7 @@ def fillna(request,id):
         return render(request, "error.html", {'error_message': 'Uploaded CSV file is empty.'})
 
     # # Drop selected columns
-    df.fillna(4)
+    df.fillna(method='ffill', inplace=True)
 
 
     if df.empty:

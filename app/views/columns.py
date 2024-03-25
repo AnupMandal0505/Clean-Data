@@ -5,6 +5,7 @@ from app.models import Csv
 import os
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 
 @login_required(login_url='signin')
@@ -110,3 +111,41 @@ def rename_columns(request,id):
             return render(request, "columns_rename.html",{'data': data,'id':obj})
         except Exception as e:
             return render(request, "error.html", {'error_message': str(e)})
+    
+
+        
+@login_required(login_url='signin')
+def columns_lower_upper_case(request,id):
+    
+    try:
+        # Read CSV file
+        obj=Csv.objects.get(id=id)
+        df = pd.read_csv(obj.old_csv)
+        
+        case = request.GET.get('case', 'lower')  # Default to 'lower' if not specified
+
+        if case == 'lower':
+            # Converting column names to lowercase
+            df.columns = [x.lower() for x in df.columns]
+        elif case == 'upper':
+            # Converting column names to uppercase
+            df.columns = [x.upper() for x in df.columns]
+
+
+    
+        if df.empty:
+            return render(request, "error.html", {'error_message': 'Uploaded CSV file is empty.'})
+
+
+        new_csv_path = 'Upload/old_csv_file/'
+        file_name = str(id)  # Convert id to string and append '.csv' extension
+        file_path = os.path.join(new_csv_path, file_name)
+        a=df.to_csv(file_path, index=False)
+        # # Update the 'old_csv' field value with the path of the modified CSV file
+        obj.old_csv.name = file_path
+        obj.save()
+        
+        return redirect('show_data', id=obj)
+    except Exception as e:
+        print(f"Error: {e}")
+        return HttpResponse("An error occurred, please try again.")

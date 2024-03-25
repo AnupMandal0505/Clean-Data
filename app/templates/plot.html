@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+
+{% endblock head %}
+
+
+{% block style %}
+{% comment %} <style>
+
+
+</style> {% endcomment %}
+{% endblock style %}
+
+
+
+{% block sidebar %}
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Columns</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/delete_columns/{{id}}" class="dropdown-item">Delete</a>
+            <a href="/rename_columns/{{id}}" class="dropdown-item">Rename</a>
+            <a href="{% url 'columns_lower_upper_case' id %}?case=lower" class="dropdown-item">Lowercase</a>
+            <a href="{% url 'columns_lower_upper_case' id %}?case=upper" class="dropdown-item">Uppercase</a>            {% comment %} <a href="/uppercase" class="dropdown-item">Uppercase</a> {% endcomment %}
+        </div>
+    </div>
+
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>NA Values</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/fillna/{{id}}" class="dropdown-item">Fill NA</a>
+            <a href="/dropna/{{id}}" class="dropdown-item">Drop NA</a>
+        </div>
+    </div>
+
+    <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Merge Data</a>
+
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Loc/Iloc</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/loc/{{id}}" class="dropdown-item">loc</a>
+            <a href="/loc/{{id}}" class="dropdown-item">iloc</a>
+        </div>
+    </div>
+
+    <a href="/plot/{{id}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>PLOT</a>
+
+    
+
+{% endblock sidebar %}
+
+{% block body %}
+
+<div class="container text-white pt-2" style="font-size:medium;">
+    &#8594; Dashboard <span><b>/</b></span> plot
+</div>
+
+<div class="container text-center">
+
+
+<h1>Immigration Plot</h1>
+<!-- Display the plot in an img tag -->
+<img src="data:image/png;base64,{{ graph }}" alt="plot" />
+</div>
+
+
+
+{% endblock body %}
+
+{% block script %}    {% endblock script %}
+
