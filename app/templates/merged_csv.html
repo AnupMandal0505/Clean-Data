@@ -87,12 +87,13 @@ h2 {
 {% block body %}
 
 <div class="container">
-    <h2>Upload a CSV File</h2>
+    <h2 class="text-danger">Upload a CSV File</h2>
+    <p class="text-dark">Merged CSV File</p>
 
-    <form id="uploadForm" action="upload_csv" method="post" enctype="multipart/form-data"> <!-- Adjust action attribute as needed -->
+    <form id="uploadForm" action="merged_csv" method="post" enctype="multipart/form-data"> <!-- Adjust action attribute as needed -->
         {% csrf_token %}
         <div class="file-upload">
-            <input type="file" id="csvFileInput" name="csv_file" accept=".csv">
+            <input type="file" id="csvFileInput" name="csv_file" accept=".csv" multiple>
             <label for="csvFileInput">Choose CSV File</label>
         </div>
 

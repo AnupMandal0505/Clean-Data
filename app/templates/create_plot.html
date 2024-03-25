@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Plot{% endblock title %}
+
+{% block head %}
+
+
+{% endblock head %}
+
+
+{% block style %}
+<style>
+    /* Custom CSS for input fields */
+    .custom-input {
+        border-radius: 10px;
+        border: 2px solid #007bff;
+        padding: 10px;
+    }
+    
+    /* Custom CSS for submit button */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    
+</style>
+{% endblock style %}
+
+
+
+{% block sidebar %}
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Columns</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/delete_columns/{{id}}" class="dropdown-item">Delete</a>
+            <a href="/rename_columns/{{id}}" class="dropdown-item">Rename</a>
+            <a href="{% url 'columns_lower_upper_case' id %}?case=lower" class="dropdown-item">Lowercase</a>
+            <a href="{% url 'columns_lower_upper_case' id %}?case=upper" class="dropdown-item">Uppercase</a>            {% comment %} <a href="/uppercase" class="dropdown-item">Uppercase</a> {% endcomment %}
+        </div>
+    </div>
+
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>NA Values</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/fillna/{{id}}" class="dropdown-item">Fill NA</a>
+            <a href="/dropna/{{id}}" class="dropdown-item">Drop NA</a>
+        </div>
+    </div>
+
+    <a href="" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Merge Data</a>
+
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Loc/Iloc</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="/loc/{{id}}" class="dropdown-item">loc</a>
+            <a href="/loc/{{id}}" class="dropdown-item">iloc</a>
+        </div>
+    </div>
+
+    <a href="/plot/{{id}}" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>PLOT</a>
+
+    
+
+{% endblock sidebar %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/plot/{{id}}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="input1" class="form-label">selected_column:</label>
+                    <input type="text" class="form-control custom-input" id="selected_column" name="selected_column">
+                </div>
+                <div class="mb-3">
+                    <label for="input2" class="form-label">title:</label>
+                    <input type="text" class="form-control custom-input" id="plot_title" name="plot_title">
+                </div>
+                <div class="mb-3">
+                    <label for="input3" class="form-label">Input ylabel:</label>
+                    <input type="text" class="form-control custom-input" id="ylabel" name="ylabel">
+                </div>
+                <div class="mb-3">
+                    <label for="input4" class="form-label">Input xlabel:</label>
+                    <input type="text" class="form-control custom-input" id="xlabel" name="xlabel">
+                </div>
+
+                <div class="mb-3">
+                    <label for="input4" class="form-label">Type:</label>
+                    <select id="selected_column" class="form-control custom-input"  name="plot_type">
+                        <option value="area">Area</option>
+                        <option value="hist">Histogram</option>
+                        <option value="3D_plot">3D Plot</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block script %}    {% endblock script %}
+
