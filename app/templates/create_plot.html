@@ -76,8 +76,21 @@
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="input1" class="form-label">selected_column:</label>
-                    <input type="text" class="form-control custom-input" id="selected_column" name="selected_column">
+
+                <ul class="option-list">
+                    {% for key in data.0.keys %}
+                    <li><label class="form-check-label"><input type="checkbox"  name="column" value="{{key}}"> {{key}} </label></li>
+                    {% endfor %}
+                </ul>
+                <button type="button" id="select-all-btn">Select All</button>
+                <button type="button" id="clear-selection-btn">Clear Selection</button>
                 </div>
+
+
+                {% comment %} <div class="mb-3">
+                    <label for="input1" class="form-label">selected_column:</label>
+                    <input type="text" class="form-control custom-input" id="selected_column" name="selected_column">
+                </div> {% endcomment %}
                 <div class="mb-3">
                     <label for="input2" class="form-label">title:</label>
                     <input type="text" class="form-control custom-input" id="plot_title" name="plot_title">
@@ -96,7 +109,8 @@
                     <select id="selected_column" class="form-control custom-input"  name="plot_type">
                         <option value="area">Area</option>
                         <option value="hist">Histogram</option>
-                        <option value="3D_plot">3D Plot</option>
+                        {% comment %} <option value="3D_plot">3D Plot</option> {% endcomment %}
+                        <option value="pie_plot">Pie Plot</option>
                     </select>
                 </div>
 
@@ -107,5 +121,23 @@
 </div>
 {% endblock body %}
 
-{% block script %}    {% endblock script %}
 
+{% block script %}
+<script>
+    document.getElementById('select-all-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        var checkboxes = document.querySelectorAll('.option-list input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = true;
+        });
+    });
+    
+    document.getElementById('clear-selection-btn').addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.option-list input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+    });
+
+</script>
+{% endblock script %}
