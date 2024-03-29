@@ -81,8 +81,10 @@
 {% block body %}
 
     <h2>CSV Data</h2>
-    <table id="example" class=".table-hover table table-dark table-striped">
-        <thead>
+    <div class="table-responsive">
+
+    <table id="example" class=".table-hover  table-bordered table-sm table table-dark table-striped">
+        <thead class="table-success">
             <tr>
                 {% for key in data.0.keys %}  <!-- Assuming data is a list of dictionaries -->
                 <th>{{ key }}</th>
@@ -101,7 +103,7 @@
     </table>
     {% comment %} <a href="delete_columns" class="btn btn-danger mt-3">Delete Columns</a>
     <a href="rename_columns" class="btn btn-danger mt-3">Columns Name Replace</a> {% endcomment %}
-
+</div>
     {% endblock body %}
 
     {% block script %}    {% endblock script %}
