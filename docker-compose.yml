@@ -1,0 +1,20 @@
+# version: '3'
+
+# services:
+#   web:
+#     build: .
+#     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+#     container_name: myapp
+#     volumes:
+#       - .:/myapp
+#     ports:
+#       - "8000:8000"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
