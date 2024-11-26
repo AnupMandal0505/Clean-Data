@@ -3,7 +3,7 @@
 This is a Django web application for cleaning and manipulating CSV data.
 
 ## 🔗 App Link
-The live site is now deployed! You can access it [here](https://data-analysis-dnfu.onrender.com).
+The live site is now deployed! You can access it [here](https://clean-data.onrender.com).
 
 ## Features
 
